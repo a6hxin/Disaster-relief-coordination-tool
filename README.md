@@ -1,6 +1,7 @@
 # ResQ — Emergency Volunteer Coordination Platform
 
 A real time disaster response web app for coordinating volunteers, managing SOS requests, and tracking field resources during emergencies.
+
 Live Demo:- https://resq-two.vercel.app/#
 
 ## 📌 Overview
