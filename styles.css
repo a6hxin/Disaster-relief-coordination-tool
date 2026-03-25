@@ -45,7 +45,10 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background:
+    linear-gradient(135deg, rgba(5,8,12,0.60) 0%, rgba(10,15,22,0.50) 50%, rgba(5,8,12,0.60) 100%),
+    url('https://images.unsplash.com/photo-1547683905-f686c993aae5?w=1800&q=80') center/cover no-repeat fixed;
+  background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   min-height: 100vh;
@@ -81,7 +84,7 @@ body {
 
 .nav-links { display: flex; gap: 0.25rem; }
 .nav-link {
-  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 1px;
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 800; letter-spacing: 1px;
   color: var(--text2); text-decoration: none; padding: 6px 12px;
   border-radius: var(--radius); transition: all 0.2s;
   border: 1px solid transparent;
@@ -122,9 +125,7 @@ body {
   min-height: calc(100vh - 60px);
   padding: 4rem 4rem 4rem 4rem;
   gap: 4rem;
-  background:
-    linear-gradient(135deg, rgba(5,8,12,0.92) 0%, rgba(10,15,22,0.80) 50%, rgba(5,8,12,0.72) 100%),
-    url('https://images.unsplash.com/photo-1547683905-f686c993aae5?w=1800&q=80') center/cover no-repeat;
+  background: transparent;
 }
 
 .hero-grid-bg {
