@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResQ — Disaster Relief Coordination</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">RES<span class="logo-accent">Q</span></span>
+    </div>
+    <div class="nav-status">
+      <span class="pulse-dot"></span>
+      <span class="status-text">LIVE OPS ACTIVE</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" onclick="showPage('home')" class="nav-link active" id="nav-home">Home</a>
+      <a href="#" onclick="showPage('register')" class="nav-link" id="nav-register">Register</a>
+      <a href="#" onclick="showPage('dashboard')" class="nav-link" id="nav-dashboard">Dashboard</a>
+      <a href="#" onclick="showPage('volunteers')" class="nav-link" id="nav-volunteers">Volunteers</a>
+      <a href="#" onclick="showPage('request')" class="nav-link" id="nav-request">Request Help</a>
+    </div>
+    <button class="sos-btn" onclick="triggerSOS()">SOS</button>
+  </nav>
+
+  <!-- ===================== HOME PAGE ===================== -->
+  <div id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid-bg"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          DISASTER RELIEF COORDINATION NETWORK
+        </div>
+        <h1 class="hero-title">WHEN EVERY<br/><span class="hero-accent">SECOND</span><br/>COUNTS</h1>
+        <p class="hero-sub">Real-time coordination between volunteers, affected communities, and relief coordinators. Built for disasters. Designed for humans.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('register')">Register as Volunteer</button>
+          <button class="btn-secondary" onclick="showPage('request')">I Need Help</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num" id="stat-volunteers">1,247</span><span class="stat-label">Volunteers</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num" id="stat-helped">8,932</span><span class="stat-label">People Helped</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num" id="stat-ops">43</span><span class="stat-label">Active Ops</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="radar-ring r1"></div>
+        <div class="radar-ring r2"></div>
+        <div class="radar-ring r3"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-center">⬡</div>
+        <div class="radar-dot d1"></div>
+        <div class="radar-dot d2"></div>
+        <div class="radar-dot d3"></div>
+        <div class="radar-dot d4 urgent"></div>
+        <div class="radar-dot d5"></div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section">
+      <div class="section-header">
+        <span class="section-tag">// HOW IT WORKS</span>
+        <h2 class="section-title">FROM CRISIS TO <span class="accent">COORDINATED</span> RESPONSE</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">📋</div>
+          <h3 class="step-title">Register</h3>
+          <p class="step-desc">Volunteers register with their skills, location, and availability. Your profile goes live instantly into the coordination network.</p>
+          <div class="step-tags">
+            <span class="mini-tag">Name & Contact</span>
+            <span class="mini-tag">Skills</span>
+            <span class="mini-tag">Location</span>
+          </div>
+        </div>
+        <div class="step-connector">→</div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">🆘</div>
+          <h3 class="step-title">Alert</h3>
+          <p class="step-desc">Affected people submit help requests with their location, urgency level, and what they need. No app install required.</p>
+          <div class="step-tags">
+            <span class="mini-tag">Location Pin</span>
+            <span class="mini-tag">Urgency Level</span>
+            <span class="mini-tag">Need Type</span>
+          </div>
+        </div>
+        <div class="step-connector">→</div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">⚡</div>
+          <h3 class="step-title">Match</h3>
+          <p class="step-desc">Coordinators assign nearby volunteers to requests based on skill match and proximity. Real-time task board keeps everyone synced.</p>
+          <div class="step-tags">
+            <span class="mini-tag">Skill Match</span>
+            <span class="mini-tag">Proximity</span>
+            <span class="mini-tag">Task Board</span>
+          </div>
+        </div>
+        <div class="step-connector">→</div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-icon">✅</div>
+          <h3 class="step-title">Resolve</h3>
+          <p class="step-desc">Volunteers mark tasks complete. Updates flow to coordinators and affected families in real-time. Every action is logged.</p>
+          <div class="step-tags">
+            <span class="mini-tag">Status Updates</span>
+            <span class="mini-tag">Logging</span>
+            <span class="mini-tag">Confirmation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVE ALERTS TICKER -->
+    <section class="alerts-section">
+      <div class="alerts-label">
+        <span class="pulse-dot red"></span>
+        ACTIVE ALERTS
+      </div>
+      <div class="ticker-wrap">
+        <div class="ticker">
+          <span class="tick-item urgent">🔴 CRITICAL — Flood Zone B4: 12 families need evacuation · Medical team required</span>
+          <span class="tick-item warn">🟠 HIGH — Shelter capacity at 87% in Sector 7 · Food supplies needed</span>
+          <span class="tick-item">🟡 MEDIUM — Road blocked on NH-48 · Debris clearance team needed</span>
+          <span class="tick-item">🟡 MEDIUM — Water supply disrupted in Colony 3 · Engineers needed</span>
+          <span class="tick-item urgent">🔴 CRITICAL — Building collapse reported — Search & Rescue needed NOW</span>
+          <span class="tick-item warn">🟠 HIGH — 47 elderly residents stranded · Transport volunteers needed</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS NEEDED -->
+    <section class="skills-section">
+      <div class="section-header">
+        <span class="section-tag">// MOST NEEDED RIGHT NOW</span>
+        <h2 class="section-title">SKILLS IN <span class="accent">HIGH DEMAND</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card critical">
+          <div class="skill-bar" style="--fill: 94%"></div>
+          <span class="skill-icon">🏥</span>
+          <span class="skill-name">Medical / First Aid</span>
+          <span class="skill-demand">94% demand</span>
+        </div>
+        <div class="skill-card high">
+          <div class="skill-bar" style="--fill: 81%"></div>
+          <span class="skill-icon">🚗</span>
+          <span class="skill-name">Transport / Driver</span>
+          <span class="skill-demand">81% demand</span>
+        </div>
+        <div class="skill-card high">
+          <div class="skill-bar" style="--fill: 76%"></div>
+          <span class="skill-icon">🔧</span>
+          <span class="skill-name">Engineering / Repair</span>
+          <span class="skill-demand">76% demand</span>
+        </div>
+        <div class="skill-card medium">
+          <div class="skill-bar" style="--fill: 63%"></div>
+          <span class="skill-icon">🍲</span>
+          <span class="skill-name">Food / Cooking</span>
+          <span class="skill-demand">63% demand</span>
+        </div>
+        <div class="skill-card medium">
+          <div class="skill-bar" style="--fill: 58%"></div>
+          <span class="skill-icon">🧠</span>
+          <span class="skill-name">Counselling / Mental Health</span>
+          <span class="skill-demand">58% demand</span>
+        </div>
+        <div class="skill-card low">
+          <div class="skill-bar" style="--fill: 44%"></div>
+          <span class="skill-icon">📡</span>
+          <span class="skill-name">Communications / Tech</span>
+          <span class="skill-demand">44% demand</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="cta-strip">
+      <div class="cta-text">
+        <h2>READY TO MAKE A <span class="accent">DIFFERENCE?</span></h2>
+        <p>Join 1,247 volunteers already coordinating on the ground.</p>
+      </div>
+      <button class="btn-primary large" onclick="showPage('register')">Register Now →</button>
+    </section>
+
+  </div>
+
+  <!-- ===================== REGISTER PAGE ===================== -->
+  <div id="page-register" class="page">
+    <div class="page-header">
+      <span class="section-tag">// VOLUNTEER REGISTRATION</span>
+      <h2 class="page-title">JOIN THE <span class="accent">NETWORK</span></h2>
+      <p class="page-sub">Your profile goes live immediately. Coordinators will match you to missions that fit your skills and location.</p>
+    </div>
+
+    <div class="register-layout">
+      <div class="register-form-wrap">
+        <form class="register-form" onsubmit="submitRegistration(event)">
+
+          <div class="form-section-label">Personal Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="reg-name" placeholder="e.g. Arjun Sharma" required />
+            </div>
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" id="reg-age" placeholder="25" min="16" max="80"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone *</label>
+              <input type="tel" id="reg-phone" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="reg-email" placeholder="you@email.com"/>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>Current Location *</label>
+            <input type="text" id="reg-location" placeholder="e.g. Sector 12, Nagpur, Maharashtra" required />
+          </div>
+
+          <div class="form-section-label">Your Skills</div>
+          <div class="skills-select">
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Medical / First Aid">🏥 Medical / First Aid</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Search & Rescue">🔍 Search & Rescue</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Transport / Driver">🚗 Transport / Driver</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Engineering / Repair">🔧 Engineering / Repair</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Food / Cooking">🍲 Food / Cooking</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Counselling">🧠 Counselling</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Communications / Tech">📡 Communications / Tech</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Logistics">📦 Logistics</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Translation / Language">🌐 Translation / Language</div>
+            <div class="skill-option" onclick="toggleSkill(this)" data-skill="Heavy Equipment">🏗️ Heavy Equipment</div>
+          </div>
+
+          <div class="form-section-label">Availability</div>
+          <div class="avail-grid">
+            <label class="avail-option">
+              <input type="radio" name="availability" value="immediate" />
+              <span class="avail-label">
+                <span class="avail-icon">⚡</span>
+                <span>Immediate<br/><small>Available right now</small></span>
+              </span>
+            </label>
+            <label class="avail-option">
+              <input type="radio" name="availability" value="24hrs" />
+              <span class="avail-label">
+                <span class="avail-icon">🕐</span>
+                <span>Within 24hrs<br/><small>Can mobilise soon</small></span>
+              </span>
+            </label>
+            <label class="avail-option">
+              <input type="radio" name="availability" value="weekends" />
+              <span class="avail-label">
+                <span class="avail-icon">📅</span>
+                <span>Weekends only<br/><small>Part-time help</small></span>
+              </span>
+            </label>
+          </div>
+
+          <div class="form-section-label">Additional Info</div>
+          <div class="form-group full">
+            <label>Relevant Experience / Certifications</label>
+            <textarea id="reg-experience" rows="3" placeholder="e.g. Red Cross trained, 2 years Army service, NCC certificate..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Emergency Contact Name</label>
+              <input type="text" id="reg-emergency-name" placeholder="Contact person"/>
+            </div>
+            <div class="form-group">
+              <label>Emergency Contact Phone</label>
+              <input type="tel" id="reg-emergency-phone" placeholder="+91 XXXXX XXXXX"/>
+            </div>
+          </div>
+
+          <div class="form-group full checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="reg-consent" required />
+              <span>I understand this is a real coordination platform. I consent to my information being shared with verified coordinators during active relief operations.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary full">REGISTER AS VOLUNTEER →</button>
+        </form>
+      </div>
+
+      <div class="register-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-icon">🛡️</div>
+          <h3>Your data is safe</h3>
+          <p>Your information is only shared with verified coordinators during active operations. Never sold or used commercially.</p>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-icon">⚡</div>
+          <h3>Go live instantly</h3>
+          <p>Once registered, your profile appears on the coordinator dashboard immediately. No approval wait.</p>
+        </div>
+        <div class="sidebar-card urgent-card">
+          <div class="sidebar-icon">🔴</div>
+          <h3>Right now we need</h3>
+          <ul class="need-list">
+            <li>Medical volunteers in Zone B</li>
+            <li>Drivers with 4WD vehicles</li>
+            <li>Hindi + Marathi translators</li>
+            <li>Food distribution help</li>
+          </ul>
+        </div>
+        <div class="volunteer-count-card">
+          <span class="count-num">1,247</span>
+          <span class="count-label">Volunteers already registered</span>
+          <div class="count-avatars">
+            <div class="av" style="background:#e74c3c">AK</div>
+            <div class="av" style="background:#e67e22">PS</div>
+            <div class="av" style="background:#27ae60">RV</div>
+            <div class="av" style="background:#2980b9">MN</div>
+            <div class="av" style="background:#8e44ad">SK</div>
+            <span class="av-more">+1242</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== DASHBOARD PAGE ===================== -->
+  <div id="page-dashboard" class="page">
+    <div class="page-header">
+      <span class="section-tag">// COORDINATOR DASHBOARD</span>
+      <h2 class="page-title">LIVE <span class="accent">OPS</span> CENTER</h2>
+    </div>
+
+    <div class="dashboard-stats">
+      <div class="ds-card critical">
+        <span class="ds-icon">🔴</span>
+        <span class="ds-num">7</span>
+        <span class="ds-label">Critical</span>
+      </div>
+      <div class="ds-card high">
+        <span class="ds-icon">🟠</span>
+        <span class="ds-num">14</span>
+        <span class="ds-label">High Priority</span>
+      </div>
+      <div class="ds-card medium">
+        <span class="ds-icon">🟡</span>
+        <span class="ds-num">22</span>
+        <span class="ds-label">In Progress</span>
+      </div>
+      <div class="ds-card done">
+        <span class="ds-icon">✅</span>
+        <span class="ds-num">89</span>
+        <span class="ds-label">Resolved</span>
+      </div>
+      <div class="ds-card volunteers-on">
+        <span class="ds-icon">👥</span>
+        <span class="ds-num">183</span>
+        <span class="ds-label">Active Now</span>
+      </div>
+    </div>
+
+    <div class="ops-board">
+      <div class="ops-column">
+        <div class="col-header critical-header">
+          <span class="pulse-dot red"></span> CRITICAL
+        </div>
+        <div class="task-card critical-card" onclick="openTask('T001')">
+          <div class="task-id">T-001</div>
+          <div class="task-title">Building collapse — 3 trapped</div>
+          <div class="task-loc">📍 Sector 4, Block C</div>
+          <div class="task-meta">
+            <span class="task-skill">Search & Rescue</span>
+            <span class="task-time">14 min ago</span>
+          </div>
+          <div class="task-assign">Assigned: Ravi Kumar, +2</div>
+        </div>
+        <div class="task-card critical-card" onclick="openTask('T002')">
+          <div class="task-id">T-002</div>
+          <div class="task-title">Flood evacuation — 12 families</div>
+          <div class="task-loc">📍 Zone B4, River Bank</div>
+          <div class="task-meta">
+            <span class="task-skill">Transport</span>
+            <span class="task-time">31 min ago</span>
+          </div>
+          <div class="task-assign">Unassigned ⚠️</div>
+        </div>
+      </div>
+
+      <div class="ops-column">
+        <div class="col-header high-header">
+          <span class="pulse-dot orange"></span> IN PROGRESS
+        </div>
+        <div class="task-card high-card">
+          <div class="task-id">T-003</div>
+          <div class="task-title">Medical camp setup</div>
+          <div class="task-loc">📍 Community Hall, Sector 7</div>
+          <div class="task-meta">
+            <span class="task-skill">Medical</span>
+            <span class="task-time">1hr ago</span>
+          </div>
+          <div class="task-assign">Assigned: Dr. Meera Singh</div>
+        </div>
+        <div class="task-card high-card">
+          <div class="task-id">T-005</div>
+          <div class="task-title">Food distribution — 200 meals</div>
+          <div class="task-loc">📍 Relief Camp Alpha</div>
+          <div class="task-meta">
+            <span class="task-skill">Food / Logistics</span>
+            <span class="task-time">2hrs ago</span>
+          </div>
+          <div class="task-assign">Assigned: Priya S., +4</div>
+        </div>
+        <div class="task-card high-card">
+          <div class="task-id">T-007</div>
+          <div class="task-title">Road debris clearance NH-48</div>
+          <div class="task-loc">📍 NH-48, Km 34</div>
+          <div class="task-meta">
+            <span class="task-skill">Engineering</span>
+            <span class="task-time">3hrs ago</span>
+          </div>
+          <div class="task-assign">Assigned: Suresh T., +2</div>
+        </div>
+      </div>
+
+      <div class="ops-column">
+        <div class="col-header done-header">
+          <span class="pulse-dot green"></span> RESOLVED TODAY
+        </div>
+        <div class="task-card done-card">
+          <div class="task-id">T-004 ✓</div>
+          <div class="task-title">Elderly evacuation — 47 people</div>
+          <div class="task-loc">📍 Old Town, Block 2</div>
+          <div class="task-meta">
+            <span class="task-skill">Transport</span>
+            <span class="task-time">4hrs ago</span>
+          </div>
+          <div class="task-assign resolved">Completed by: Amit K., +3</div>
+        </div>
+        <div class="task-card done-card">
+          <div class="task-id">T-006 ✓</div>
+          <div class="task-title">Water supply restored</div>
+          <div class="task-loc">📍 Colony 3</div>
+          <div class="task-meta">
+            <span class="task-skill">Engineering</span>
+            <span class="task-time">5hrs ago</span>
+          </div>
+          <div class="task-assign resolved">Completed by: Neha R.</div>
+        </div>
+        <div class="task-card done-card">
+          <div class="task-id">T-008 ✓</div>
+          <div class="task-title">Medicine delivery — 3 locations</div>
+          <div class="task-loc">📍 Multiple zones</div>
+          <div class="task-meta">
+            <span class="task-skill">Medical / Logistics</span>
+            <span class="task-time">6hrs ago</span>
+          </div>
+          <div class="task-assign resolved">Completed by: Pooja M.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== VOLUNTEERS PAGE ===================== -->
+  <div id="page-volunteers" class="page">
+    <div class="page-header">
+      <span class="section-tag">// VOLUNTEER NETWORK</span>
+      <h2 class="page-title">THE <span class="accent">PEOPLE</span> ON THE GROUND</h2>
+    </div>
+
+    <div class="vol-filters">
+      <button class="filter-btn active" onclick="filterVols(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterVols(this,'available')">Available Now</button>
+      <button class="filter-btn" onclick="filterVols(this,'deployed')">Deployed</button>
+      <input class="vol-search" type="text" placeholder="Search by name or skill..." oninput="searchVols(this.value)"/>
+    </div>
+
+    <div class="vol-grid" id="vol-grid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- ===================== REQUEST HELP PAGE ===================== -->
+  <div id="page-request" class="page">
+    <div class="page-header">
+      <span class="section-tag">// SUBMIT A HELP REQUEST</span>
+      <h2 class="page-title">GET <span class="accent">HELP</span> NOW</h2>
+      <p class="page-sub">Tell us where you are and what you need. A coordinator will assign a volunteer to you as fast as possible.</p>
+    </div>
+
+    <div class="request-layout">
+      <form class="request-form" onsubmit="submitRequest(event)">
+
+        <div class="urgency-select">
+          <div class="urg-label">How urgent is your situation?</div>
+          <div class="urg-options">
+            <label class="urg-option">
+              <input type="radio" name="urgency" value="critical" />
+              <span class="urg-btn critical-urg">🔴 CRITICAL<br/><small>Life at risk</small></span>
+            </label>
+            <label class="urg-option">
+              <input type="radio" name="urgency" value="high" />
+              <span class="urg-btn high-urg">🟠 HIGH<br/><small>Need help today</small></span>
+            </label>
+            <label class="urg-option">
+              <input type="radio" name="urgency" value="medium" />
+              <span class="urg-btn medium-urg">🟡 MEDIUM<br/><small>Can wait a few hours</small></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-section-label">Your Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="req-name" placeholder="Full name" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" id="req-phone" placeholder="+91 XXXXX XXXXX" required/>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Your Location *</label>
+          <input type="text" id="req-location" placeholder="Be as specific as possible — house no., street, landmark" required/>
+        </div>
+
+        <div class="form-section-label">What do you need?</div>
+        <div class="need-types">
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Medical Help">🏥 Medical Help</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Evacuation">🚗 Evacuation</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Food & Water">🍲 Food & Water</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Shelter">🏠 Shelter</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Rescue">🔍 Rescue</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Medicines">💊 Medicines</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Communication">📞 Communication</div>
+          <div class="need-type" onclick="toggleNeed(this)" data-need="Other">📋 Other</div>
+        </div>
+
+        <div class="form-group full">
+          <label>Describe your situation *</label>
+          <textarea id="req-desc" rows="4" placeholder="Tell us exactly what's happening and how many people are affected..." required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number of people affected</label>
+            <input type="number" id="req-count" placeholder="e.g. 5" min="1"/>
+          </div>
+          <div class="form-group">
+            <label>Any medical conditions?</label>
+            <input type="text" id="req-medical" placeholder="e.g. elderly, children, injuries"/>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary full emergency-btn">SUBMIT HELP REQUEST 🆘</button>
+      </form>
+
+      <div class="request-sidebar">
+        <div class="sidebar-card urgent-card">
+          <h3>🚨 In immediate danger?</h3>
+          <p>Call emergency services first:</p>
+          <div class="emergency-numbers">
+            <div class="em-num"><span>Police</span><strong>100</strong></div>
+            <div class="em-num"><span>Ambulance</span><strong>108</strong></div>
+            <div class="em-num"><span>Fire</span><strong>101</strong></div>
+            <div class="em-num"><span>NDRF</span><strong>011-24363260</strong></div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h3>⏱️ Response times</h3>
+          <div class="response-times">
+            <div class="rt-row"><span class="rt-level critical-text">Critical</span><span class="rt-time">~15 min</span></div>
+            <div class="rt-row"><span class="rt-level high-text">High</span><span class="rt-time">~45 min</span></div>
+            <div class="rt-row"><span class="rt-level medium-text">Medium</span><span class="rt-time">~2 hrs</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOS MODAL -->
+  <div id="sos-modal" class="sos-modal hidden">
+    <div class="sos-modal-inner">
+      <div class="sos-title">🚨 SOS ACTIVATED</div>
+      <div class="sos-pulse"></div>
+      <p>Your location is being shared with the nearest coordinator.</p>
+      <p class="sos-coords" id="sos-coords">Acquiring GPS...</p>
+      <button class="btn-secondary" onclick="closeSOS()">Cancel SOS</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
