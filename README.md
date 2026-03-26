@@ -2,7 +2,9 @@
 
 A real time disaster response web app for coordinating volunteers, managing SOS requests, and tracking field resources during emergencies.
 
-Live Demo:- https://resq-two.vercel.app/#
+***Live Demo***:- https://resq-two.vercel.app/#
+ 
+***Preview Imgs***:- ![alt text](preview1.png) ![alt text](preview4.png) ![alt text](preview2.png) ![alt text](preview3.png) 
 
 ## 📌 Overview
 
